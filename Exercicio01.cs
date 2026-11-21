@@ -2,20 +2,20 @@
 using System;
 using System.IO; //Biblioteca para utilizar o writer para escrever arquivos
 
-class Program
+class Exercicio01
 {
     static void addBanda(List<Banda> listaBandas)
     {
         Banda novaBanda = new Banda();
         Console.WriteLine("Entre com os dados da Banda");
         Console.Write("Nome da banda:");
-        novaBanda.nome = Console.ReadLine();
+        novaBanda.nome = Console.ReadLine()!;
         Console.Write("Genero da banda:");
-        novaBanda.genero = Console.ReadLine();
+        novaBanda.genero = Console.ReadLine()!;
         Console.Write("Integrantes da banda:");
-        novaBanda.integrantes = int.Parse(Console.ReadLine());
+        novaBanda.integrantes = int.Parse(Console.ReadLine()!);
         Console.Write("Ranking da banda:");
-        novaBanda.ranking = int.Parse(Console.ReadLine());
+        novaBanda.ranking = int.Parse(Console.ReadLine()!);
         listaBandas.Add(novaBanda); // colocando a nova banda no vetor
 
     }
@@ -37,21 +37,26 @@ class Program
     static int menu()
     {
         Console.WriteLine("=== SISTEMA DE CADASTRO DE BANDAS ===");
-        Console.WriteLine("1 - Adicionar Banda");
-        Console.WriteLine("2 - Mostrar Bandas");
-        Console.WriteLine("3 - Buscar Banda");
-        Console.WriteLine("4 - Alterar Banda");
-        Console.WriteLine("5 - Remover Banda");
+        Console.WriteLine("1 - Adicionar Banda"); //a
+        Console.WriteLine("2 - Mostrar Bandas"); //b
+        Console.WriteLine("3 - Buscar Banda"); //f
+        Console.WriteLine("4 - Buscar Banda por Ranking"); //d
+        Console.WriteLine("5 - Buscar Banda por Genêro"); //e
+        Console.WriteLine("6 - Alterar Banda"); //h
+        Console.WriteLine("7 - Remover Banda"); //g
+        Console.WriteLine("8 - Salvar Dados"); //c
+        Console.WriteLine("9 - Carregar Dados");
         Console.WriteLine("0 - Sair");
         Console.Write("Escolha uma opção: ");
-        return int.Parse(Console.ReadLine());
+        return int.Parse(Console.ReadLine()!);
     }
 
     static void salvarDados(List<Banda> listadeBandas, string nomeArquivo)
     {
         StreamWriter writer = new StreamWriter(nomeArquivo);
 
-        foreach (Banda banda in listadeBandas) {
+        foreach (Banda banda in listadeBandas)
+        {
             writer.WriteLine($"{banda.nome},{banda.genero},{banda.integrantes},{banda.ranking}");
         }
 
@@ -151,8 +156,51 @@ class Program
         return false;
     }
 
+    static bool buscarBandaRanking(List<Banda> listaBandas, int rankingBusca)
+    {
+        bool encontrado = false;
+
+        foreach (Banda b in listaBandas)
+        {
+            if (b.ranking == rankingBusca)
+            {
+                Console.WriteLine(
+                    $"Nome: {b.nome}\n" +
+                    $"Gênero: {b.genero}\n" +
+                    $"Integrantes: {b.integrantes}\n" +
+                    $"Ranking: {b.ranking}\n"
+                );
+                encontrado = true;
+            }
+        }
+        return encontrado;
+    }
+
+    static bool mostrarBandasGenero(List<Banda> listaBandas, string buscaGenero)
+    {
+        bool encontrado = false;
+        Console.WriteLine($"*** Bandas de {buscaGenero} ***");
+        for (int i = 0; i < listaBandas.Count; i++)
+        {
+            if (listaBandas[i].genero.ToUpper() == buscaGenero.ToUpper())
+            {
+                Console.WriteLine("*** Dados da Banda " + (i + 1) + "***");
+                Console.WriteLine($"Nome:{listaBandas[i].nome}");
+                Console.WriteLine($"Genero:{listaBandas[i].genero}");
+                Console.WriteLine($"Integrantes:{listaBandas[i].integrantes}");
+                Console.WriteLine($"Ranking:{listaBandas[i].ranking}\n");
+                encontrado = true;
+            }
+        }
+        return encontrado;
+    }
+
+
     static void Main()
     {
+
+        Console.Clear();
+
         List<Banda> listaBandas = new List<Banda>(); // vetor de bandas
         int opcao;
         carregarDados(listaBandas, "Lista_Bandas.txt");
@@ -160,43 +208,64 @@ class Program
         do
         {
             opcao = menu();
-            switch (opcao) {
-                case 1: addBanda(listaBandas); 
-                    break;
+            string buscarTexto;
+            int buscarValor = 0;
+            bool flag = false;
 
-                case 2: mostrarBandas(listaBandas);
+            switch (opcao)
+            {
+                case 1:
+                    addBanda(listaBandas);
                     break;
-
+                case 2:
+                    mostrarBandas(listaBandas);
+                    break;
                 case 3:
                     Console.Write("Digite o nome da banda que deseja buscar:");
-                    string nomeBanda = Console.ReadLine()!;
-                    bool encontrado = buscarBanda(listaBandas, nomeBanda);
-                    if (!encontrado)
+                    buscarTexto = Console.ReadLine()!;
+                    flag = buscarBanda(listaBandas, buscarTexto);
+                    if (!flag)
                         Console.WriteLine("Banda não encontrada!");
                     break;
-                
-
                 case 4:
+                    Console.Write("Digite o Ranking da banda que deseja buscar:");
+                    buscarValor = int.Parse(Console.ReadLine()!);
+                    flag = buscarBandaRanking(listaBandas, buscarValor);
+                    if (!flag)
+                        Console.WriteLine("Banda não encontrada!");
+                    break;
+                case 5:
+                    Console.Write("Insira o gênero que deseja listar:");
+                    buscarTexto = Console.ReadLine()!;
+                    flag = mostrarBandasGenero(listaBandas, buscarTexto);
+                    if (!flag)
+                        Console.WriteLine("Banda não encontrada!");
+                    break;
+                case 6:
                     Console.Write("Digite o nome da banda que deseja atualizar:");
-                    string nomeBandaAtualizar = Console.ReadLine();
-                    bool atualizado = atualizarBanda(listaBandas, nomeBandaAtualizar);
-                    if (atualizado)
+                    buscarTexto = Console.ReadLine()!;
+                    flag = atualizarBanda(listaBandas, buscarTexto);
+                    if (flag)
                         Console.WriteLine("Banda atualizada com sucesso!");
                     else
                         Console.WriteLine("Banda não encontrada!");
                     break;
-
-                case 5:
+                case 7:
                     Console.Write("Digite o nome da banda que deseja remover:");
-                    string nomeBandaRemover = Console.ReadLine();
-                    bool removido = removerBanda(listaBandas, nomeBandaRemover);
-                    if (removido)
+                    buscarTexto = Console.ReadLine()!;
+                    flag = removerBanda(listaBandas, buscarTexto);
+                    if (flag)
                         Console.WriteLine("Banda removida com sucesso!");
                     else
                         Console.WriteLine("Banda não encontrada/removida!");
                     break;
-
-                case 0: 
+                case 8:
+                    salvarDados(listaBandas, "Lista_Bandas.txt");
+                    break;
+                case 9:
+                    carregarDados(listaBandas, "Lista_Bandas.txt");
+                    break;
+                case 0:
                     Console.WriteLine("Saindo...");
                     salvarDados(listaBandas, "Lista_Bandas.txt");
                     break;
