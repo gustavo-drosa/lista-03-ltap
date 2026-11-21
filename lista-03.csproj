@@ -6,7 +6,7 @@
     <RootNamespace>lista_03</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>Exercicio01</StartupObject>
+    <StartupObject>Exercicio05</StartupObject>
   </PropertyGroup>
 
 </Project>

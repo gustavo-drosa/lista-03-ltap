@@ -37,6 +37,8 @@ class Exercicio05
     Console.Write("Nascimento (Mês): ");
     novoGado.nasc.mes = int.Parse(Console.ReadLine()!);
 
+    novoGado.abate = 'N';
+
     listaGados.Add(novoGado);
   }
 
@@ -166,7 +168,7 @@ class Exercicio05
 
     foreach (Gado g in listaGados)
     {
-      writer.WriteLine($"{g.codigo},{g.leite},{g.alim},{g.nasc.mes},{g.nasc.ano},{g.abate}");
+      writer.WriteLine($"{g.codigo};{g.leite};{g.alim};{g.nasc.mes};{g.nasc.ano};{g.abate}");
     }
     Console.WriteLine("Dados salvos com sucesso!");
     writer.Dispose();
@@ -179,14 +181,14 @@ class Exercicio05
       string[] linhasDoArquivo = File.ReadAllLines(nomeArquivo);
       foreach (string linha in linhasDoArquivo)
       {
-        string[] campos = linha.Split(",");
+        string[] campos = linha.Split(";");
         Gado gado = new Gado();
         gado.codigo = int.Parse(campos[0]);
         gado.leite = double.Parse(campos[1]);
         gado.alim = double.Parse(campos[2]);
         gado.nasc.mes = int.Parse(campos[3]);
         gado.nasc.ano = int.Parse(campos[4]);
-        gado.abate = Convert.ToChar(campos[5]);
+        gado.abate = Convert.ToChar(campos[5].Trim());
 
 
         listaGados.Add(gado);

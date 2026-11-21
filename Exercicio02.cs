@@ -1,7 +1,8 @@
 ﻿using atividade_consumo;
 using System;
 
-class AtividadeConsumo {
+class Exercicio02
+{
 
     static int menu()
     {
@@ -19,7 +20,8 @@ class AtividadeConsumo {
     }
 
 
-    static void addEletrodomestico(List<Eletrodomestico> listaEletros) {
+    static void addEletrodomestico(List<Eletrodomestico> listaEletros)
+    {
         Eletrodomestico novoEletro = new Eletrodomestico();
 
         Console.Write("Nome: ");
@@ -32,7 +34,8 @@ class AtividadeConsumo {
         listaEletros.Add(novoEletro);
     }
 
-    static void mostrarEletrodomesticos(List<Eletrodomestico> listaEletros) {
+    static void mostrarEletrodomesticos(List<Eletrodomestico> listaEletros)
+    {
         int posicao = 1;
 
         Console.WriteLine("\n==== Listando Eletrodomésticos ====\n");
@@ -50,12 +53,14 @@ class AtividadeConsumo {
     }
 
     //case 3
-    static bool buscarEletrodomestico(List<Eletrodomestico> listaEletros, string nomeBusca) {
+    static bool buscarEletrodomestico(List<Eletrodomestico> listaEletros, string nomeBusca)
+    {
 
         bool encontrado = false;
         Console.WriteLine("\n==== Listando Busca de Eletrodomésticos ====\n");
 
-        foreach (Eletrodomestico e in listaEletros) {
+        foreach (Eletrodomestico e in listaEletros)
+        {
             if (e.nome.ToUpper().Contains(nomeBusca.ToUpper()))
             {
                 Console.WriteLine(
@@ -68,14 +73,15 @@ class AtividadeConsumo {
                 encontrado = true;
             }
         }
-        
+
 
         return encontrado;
 
     }
 
     //case 4
-    static bool buscarPorConsumo(List<Eletrodomestico> listaEletros, double valorX) {
+    static bool buscarPorConsumo(List<Eletrodomestico> listaEletros, double valorX)
+    {
         bool encontrado = false;
         double consumo = 0.0;
 
@@ -105,10 +111,12 @@ class AtividadeConsumo {
     }
 
     //case 5
-    static void calcularConsumoCasa(List<Eletrodomestico> listaEletros, double valorKwh) {
+    static void calcularConsumoCasa(List<Eletrodomestico> listaEletros, double valorKwh)
+    {
         double consumoDiarioTotal = 0;
 
-        foreach (Eletrodomestico e in listaEletros) {
+        foreach (Eletrodomestico e in listaEletros)
+        {
             consumoDiarioTotal += e.potencia * e.tempoMedioAtivo;
 
         }
@@ -161,7 +169,10 @@ class AtividadeConsumo {
         }
     }
 
-    static void Main() {
+    static void Main()
+    {
+
+        Console.Clear();
 
         List<Eletrodomestico> listaEletrodomesticos = new List<Eletrodomestico>();
 
@@ -187,7 +198,8 @@ class AtividadeConsumo {
                     Console.Write("Insira o nome para busca: ");
                     string nomeBusca = Console.ReadLine()!;
                     bool encontrado = buscarEletrodomestico(listaEletrodomesticos, nomeBusca);
-                    if (!encontrado) {
+                    if (!encontrado)
+                    {
                         Console.WriteLine("Nenhum resultado encontrado!");
                     }
                     break;
