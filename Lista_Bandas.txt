@@ -1,0 +1,12 @@
+Queen,Rock,4,9
+Nirvana,Grunge,3,8
+Metallica,Heavy Metal,4,10
+Coldplay,Pop Rock,4,7
+Linkin Park,Nu Metal,6,9
+ACDC,Hard Rock,7,3
+Red Hot Chili Peppers,Funk Rock,4,7
+Evanescence,Rock Alternativo,5,8
+Foo Fighters,Rock Alternativo,5,7
+System of a Down,Metal Alternativo,4,10
+Green Day,Punk Rock,3,6
+The Beatles,Rock,4,10

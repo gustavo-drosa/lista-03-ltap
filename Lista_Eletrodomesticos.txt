@@ -1,0 +1,11 @@
+Geladeira;0,15;24
+Freezer;0,2;12
+Micro-ondas;1,4;0,5
+Fogão Elétrico;2;2
+Forno Elétrico;1,5;1,5
+Air Fryer;1,5;0,8
+Liquidificador;0,5;0,2
+Máquina de Lavar;1;1
+Ventilador;0,1;8
+Ar-Condicionado;1,2;8
+Liquidificador Muito Bom;0,2;1

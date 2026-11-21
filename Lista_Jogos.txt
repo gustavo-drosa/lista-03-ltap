@@ -1,0 +1,10 @@
+The Legend of Zelda: Breath of the Wild,Nintendo Switch,2017,11/11/2026,Gustavo,S
+God of War,PlayStation 4,2018,,,N
+Minecraft,PC,2011,09/11/2026,Pedro,S
+Red Dead Redemption 2,Xbox One,2018,,,N
+The Witcher 3: Wild Hunt,PC,2015,07/11/2026,Ana,S
+Dark Souls III,PlayStation 4,2016,,,N
+Resident Evil 4,PlayStation 5,2023,05/11/2026,Carlos,S
+Hollow Knight,PC,2017,,,N
+Forza Horizon 5,Xbox Series X,2021,03/11/2026,Bruno,S
+Super Mario Odyssey,Nintendo Switch,2017,,,N
